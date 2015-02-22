@@ -1,6 +1,14 @@
+
+
 #pragma once
 
+// Include the bibliotheken, Liberia
+#include "iostream"
 #include "ofMain.h"
+using namespace std; 
+
+
+
 
 class ofApp : public ofBaseApp{
 
@@ -19,4 +27,24 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
+
+	
+
+		// Player 
+		int xxMario; 
+		int yyMario; 
+		int diameterMario;
+		int stateSpring; 
+
+		// Scare blok thing 
+		int xxScare; 
+		int yyScare; 
+		int lScare; 
+		int hScare; 
+
+
+
+
+
+
 };
