@@ -30,7 +30,9 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+	// aaaaaaaaaaaaaaaaaaaa ik moet gaan kijken of ik de colision kan samen 
+	// voegen met het springen maar succes daar mee 
+	// ps. Mario gaat nog door zijkant heen en bovenkant heen van scare (vierkant)
 
 // ----------------------Jumping function player--------------------------------------------- 
 
@@ -38,7 +40,23 @@ void ofApp::update(){
 			if (stateSpring == 1) 
 			{
 				// Mario can't go though the Scare thing 
-				if (yyMario + hMario > yyScare + hScare)
+			if (xxScare < xxMario + lMario && 
+						 xxScare + lScare > xxMario && 
+				   		 yyScare < yyMario + hMario && 
+						 yyScare + hScare > yyMario)
+				{
+					cout << "stoot hoofd" << endl; 
+							if (yyMario > 600)
+							{
+								cout << "ik doe het " << endl; 
+								yyMario -=7;
+							}
+						else if ( yyMario <=600)
+							{
+								stateSpring =2; 
+							}
+				}
+				else 
 				{
 						if (yyMario > 500)
 							{
