@@ -8,7 +8,8 @@ void ofApp::setup(){
 	// Setup the data player 
 	yyMario = 700; 
 	xxMario = 40;
-	diameterMario = 30; 
+	lMario = 30; 
+	hMario= 30; 
 	stateSpring = 0; 
 
 	// Setup the date Scare 
@@ -17,25 +18,37 @@ void ofApp::setup(){
 	hScare = 40;
 	lScare= 50;
 
+	kleur1 = 100; 
+	kleur2 = 0; 
+	kleur3 = 250; 
+
+	// Switch --- is the Scare active of non active 
+	// So the Scare is active now =) 
+	Switch = true; 
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 
 
+// ----------------------Jumping function player--------------------------------------------- 
 
-			// Jumping function player
 			// Jumping up 
 			if (stateSpring == 1) 
 			{
-					if (yyMario > 500)
-						{
-							yyMario -=7;
-						}
-					else if ( yyMario <=500)
-						{
-							stateSpring =2; 
-						} 
+				// Mario can't go though the Scare thing 
+				if (yyMario + hMario > yyScare + hScare)
+				{
+						if (yyMario > 500)
+							{
+								yyMario -=7;
+							}
+						else if ( yyMario <=500)
+							{
+								stateSpring =2; 
+							}
+				}
 			} 
 			// Goes down 
 			else if (stateSpring ==2)
@@ -51,9 +64,29 @@ void ofApp::update(){
 						}
 			}
 
+//--------------Colision detection with Mario and Scare----------Scare active or non active ---------
 
-
-
+	if (Switch == true)
+	{
+				if (xxScare < xxMario + lMario && 
+						 xxScare + lScare > xxMario && 
+				   		 yyScare < yyMario + hMario && 
+						 yyScare + hScare > yyMario )
+				{
+						  kleur3 = 10; 	
+						  Switch = false; 
+				} 
+				else
+				{
+						 kleur3 = 250; 
+				}
+	 } 
+	else 
+	{
+		kleur1 = 120; 
+		kleur2 = 120; 
+		kleur3 = 120;
+	}
 
 }
 
@@ -62,10 +95,10 @@ void ofApp::draw()
 {
 	// player
 	ofSetColor(90,90,90);
-	ofCircle(xxMario, yyMario, diameterMario);
+	ofCircle(xxMario, yyMario, lMario,hMario);
 
 	// Scare Blok thing 
-	ofSetColor (100,0,250); 
+	ofSetColor (kleur1,kleur2,kleur3); 
 	ofRect(xxScare,yyScare,lScare,hScare);
 }
 
