@@ -26,49 +26,67 @@ void ofApp::setup(){
 	// So the Scare is active now =) 
 	Switch = true; 
 
+	// Special Power thing 
+	xxSpecialPower = 720; 
+	yySpecialPower = 566;
+	LSpecialPower = 15;
+	HSpecialPower = 15; 
+	stateSpecialPower= 0; 
+	XspeedSpecialPower = 1; 
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	// aaaaaaaaaaaaaaaaaaaa ik moet gaan kijken of ik de colision kan samen 
-	// voegen met het springen maar succes daar mee 
-	// ps. Mario gaat nog door zijkant heen en bovenkant heen van scare (vierkant)
-
+	
 // ----------------------Jumping function player--------------------------------------------- 
-
-			// Jumping up 
+//--------------Colision detection with Mario and Scare----------Scare active or non active ---------
+			
 			if (stateSpring == 1) 
-			{
-				// Mario can't go though the Scare thing 
-			if (xxScare < xxMario + lMario && 
-						 xxScare + lScare > xxMario && 
-				   		 yyScare < yyMario + hMario && 
-						 yyScare + hScare > yyMario)
+			{	
+				if (xxScare < xxMario + lMario && 
+							xxScare + lScare > xxMario && 
+				   			yyScare < yyMario + hMario && 
+							yyScare + hScare > yyMario )
 				{
-					cout << "stoot hoofd" << endl; 
+							// Dan mag mario maar tot 600 springen
 							if (yyMario > 600)
-							{
-								cout << "ik doe het " << endl; 
+							{ 
 								yyMario -=7;
 							}
-						else if ( yyMario <=600)
+						   else if ( yyMario <=600)
 							{
 								stateSpring =2; 
-							}
-				}
-				else 
+							} 
+
+									// De scare kan van kleur veranderen .............
+									if (Switch == true)
+									{
+											  kleur1 = 120; 
+											  kleur2 = 120; 
+											  kleur3 = 120;
+
+											  stateSpecialPower = 1;
+											  cout << "stateSpecialPower = 1" << endl; 
+											  Switch = false;
+									} 
+									else // Scare is niet meer active ................
+									{
+											// gebeurt niks meer 
+									} 
+				} 
+				else // als Mario het blok niet raakt dan ...................
 				{
-						if (yyMario > 500)
-							{
+							// Dan mag mario tot 500 springen.
+							if (yyMario > 500)
+							{ 
 								yyMario -=7;
 							}
-						else if ( yyMario <=500)
+						   else if ( yyMario <=500)
 							{
 								stateSpring =2; 
-							}
-				}
-			} 
-			// Goes down 
+							} 
+				} 
+			} // Als Mario spring hoogte heeft bereikt gaat die weer naar beneden. 
 			else if (stateSpring ==2)
 			{
 					if (yyMario < 700)
@@ -82,35 +100,66 @@ void ofApp::update(){
 						}
 			}
 
-//--------------Colision detection with Mario and Scare----------Scare active or non active ---------
 
-	if (Switch == true)
-	{
-				if (xxScare < xxMario + lMario && 
-						 xxScare + lScare > xxMario && 
-				   		 yyScare < yyMario + hMario && 
-						 yyScare + hScare > yyMario )
-				{
-						  kleur3 = 10; 	
-						  Switch = false; 
-				} 
-				else
-				{
-						 kleur3 = 250; 
-				}
-	 } 
-	else 
-	{
-		kleur1 = 120; 
-		kleur2 = 120; 
-		kleur3 = 120;
-	}
+			// SpecialPower thing states 
+			// Goes out of the boxs  -------		UP. 
+			if (stateSpecialPower == 1)
+			{
+						if (yySpecialPower > (yyScare-19))
+							{
+									yySpecialPower -= 0.10; 				
+							} 
+						else 
+							{
+									stateSpecialPower = 2; 
+							}
+			} // Goes right  ----------- right speed.
+			else if (stateSpecialPower ==2)
+			{
+							if (xxSpecialPower < 761)
+								{
+										xxSpecialPower += 0.20; 				
+								} 
+						   else 
+								{
+										stateSpecialPower = 3; 
+								}
+			} // goes down ---------- Down 
+			else if (stateSpecialPower == 3)
+			{
+							if (yySpecialPower <= 723)
+								{
+											yySpecialPower += 2; 
+								}
+							else 
+								{
+											stateSpecialPower = 4; 
+								}	
+			} // Get a speed to the right -------- right  
+			else if (stateSpecialPower == 4)
+			{
+							// give SpecialPower a speed. 
+							xxSpecialPower += XspeedSpecialPower; 
+
+							// The SpecialPower bounce at the side of the screen
+							if (xxSpecialPower > (ofGetWidth() - 15 )|| xxSpecialPower < 15)
+								{
+											XspeedSpecialPower = XspeedSpecialPower * -1;  
+								}
+			}
+
+
+
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw()
 {
+	// Special power thing 
+	ofSetColor (250,0,30); 
+	ofCircle(xxSpecialPower,yySpecialPower,LSpecialPower,HSpecialPower ); 
+
 	// player
 	ofSetColor(90,90,90);
 	ofCircle(xxMario, yyMario, lMario,hMario);
@@ -125,7 +174,7 @@ void ofApp::draw()
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 
-	cout << key << endl; 
+	//cout << key << endl;
 
 	// Player Right  
 	if (key == 358) 

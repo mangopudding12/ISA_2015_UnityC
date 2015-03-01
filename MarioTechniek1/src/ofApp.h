@@ -47,6 +47,13 @@ class ofApp : public ofBaseApp{
 		int hScare; 
 		bool Switch; 
 
+		// Special Power thing 
+		float xxSpecialPower; 
+		float yySpecialPower; 
+		int LSpecialPower; 
+		int HSpecialPower; 
+		int stateSpecialPower; 
+		float XspeedSpecialPower; 
 
 
 
