@@ -1,38 +1,67 @@
 #include "ofApp.h"
 
-
+// Het probleem van de rode bal weg krijgen. 
+// Kan je makkelijk doen door gewoon de rode bal niet meer te tekenen. Dat werkt zeer goed. 
 
 //--------------------------------------------------------------
 void ofApp::setup(){
 
+	
+	// this code say you don't see the mouse 
+		ofHideCursor(); 
+
 	// Setup the data player 
-	yyMario = 700; 
-	xxMario = 40;
-	lMario = 30; 
-	hMario= 30; 
-	stateSpring = 0; 
+		yyMario = 700; 
+		xxMario = 40;
+		lMario = 30; 
+		hMario= 30; 
+		stateSpring = 0; 
 
 	// Setup the date Scare 
-	yyScare = 550; 
-	xxScare = 700; 
-	hScare = 40;
-	lScare= 50;
+		yyScare = 550; 
+		xxScare = 700; 
+		hScare = 40;
+		lScare= 50;
 
-	kleur1 = 100; 
-	kleur2 = 0; 
-	kleur3 = 250; 
+		kleur1 = 100; 
+		kleur2 = 0; 
+		kleur3 = 250; 
 
 	// Switch --- is the Scare active of non active 
 	// So the Scare is active now =) 
-	Switch = true; 
+		Switch = true; 
 
 	// Special Power thing 
-	xxSpecialPower = 720; 
-	yySpecialPower = 566;
-	LSpecialPower = 15;
-	HSpecialPower = 15; 
-	stateSpecialPower= 0; 
-	XspeedSpecialPower = 1; 
+	//xxSpecialPower = 720; 
+	//yySpecialPower = 566;
+	//LSpecialPower = 15;
+	//HSpecialPower = 15; 
+	//stateSpecialPower= 0; 
+	//XspeedSpecialPower = 1; 
+
+
+		 //set up the SpecialPowre
+		 for(int i = 0; i <= NUM_SPECIALPOWER ; i ++ )
+		 {
+				SpecialPower u;
+				u.xxSpecialPower = 720; 
+				u.yySpecialPower = 566;
+				u.LSpecialPower = 15;
+				u.HSpecialPower = 15;  
+				u.XspeedSpecialPower = 1; 
+
+				// this push all the circles we made to the vector 
+		       mySpecialPower.push_back(u);
+
+         }
+			
+
+		       // Cout the groote van de vector 
+               cout << mySpecialPower.size() << " number of elements in the vector"<<endl;
+
+
+			   // SpecialPower state 
+			   stateSpecialPower= 0;
 }
 
 //--------------------------------------------------------------
@@ -66,7 +95,7 @@ void ofApp::update(){
 											  kleur3 = 120;
 
 											  stateSpecialPower = 1;
-											  cout << "stateSpecialPower = 1" << endl; 
+											  //cout << "stateSpecialPower = 1" << endl; 
 											  Switch = false;
 									} 
 									else // Scare is niet meer active ................
@@ -103,51 +132,57 @@ void ofApp::update(){
 
 			// SpecialPower thing states 
 			// Goes out of the boxs  -------		UP. 
-			if (stateSpecialPower == 1)
-			{
-						if (yySpecialPower > (yyScare-19))
-							{
-									yySpecialPower -= 0.10; 				
-							} 
-						else 
-							{
-									stateSpecialPower = 2; 
-							}
-			} // Goes right  ----------- right speed.
-			else if (stateSpecialPower ==2)
-			{
-							if (xxSpecialPower < 761)
-								{
-										xxSpecialPower += 0.20; 				
-								} 
-						   else 
-								{
-										stateSpecialPower = 3; 
-								}
-			} // goes down ---------- Down 
-			else if (stateSpecialPower == 3)
-			{
-							if (yySpecialPower <= 723)
-								{
-											yySpecialPower += 2; 
-								}
-							else 
-								{
-											stateSpecialPower = 4; 
-								}	
-			} // Get a speed to the right -------- right  
-			else if (stateSpecialPower == 4)
-			{
-							// give SpecialPower a speed. 
-							xxSpecialPower += XspeedSpecialPower; 
 
-							// The SpecialPower bounce at the side of the screen
-							if (xxSpecialPower > (ofGetWidth() - 15 )|| xxSpecialPower < 15)
-								{
-											XspeedSpecialPower = XspeedSpecialPower * -1;  
-								}
+			for (int u=0; u <= NUM_SPECIALPOWER; u++)
+			{
+					if (stateSpecialPower == 1)
+					{
+								if (mySpecialPower[u].yySpecialPower > (yyScare-19))
+									{
+											mySpecialPower[u].yySpecialPower -= 0.10; 				
+									} 
+								else 
+									{
+											stateSpecialPower = 2; 
+									}
+					} // Goes right  ----------- right speed.
+					else if (stateSpecialPower ==2)
+					{
+									if (mySpecialPower[u].xxSpecialPower < 761)
+										{
+												mySpecialPower[u].xxSpecialPower += 0.20; 				
+										} 
+								else 
+										{
+												stateSpecialPower = 3; 
+										}
+					} // goes down ---------- Down 
+					else if (stateSpecialPower == 3)
+					{
+									if (mySpecialPower[u].yySpecialPower <= 723)
+										{
+													mySpecialPower[u].yySpecialPower += 2; 
+										}
+									else 
+										{
+													stateSpecialPower = 4; 
+										}	
+					} // Get a speed to the right -------- right  
+					else if (stateSpecialPower == 4)
+					{
+									// give SpecialPower a speed. 
+									mySpecialPower[u].xxSpecialPower += mySpecialPower
+									[u].XspeedSpecialPower; 
+
+									// The SpecialPower bounce at the side of the screen
+									if (mySpecialPower[u].xxSpecialPower > (ofGetWidth() - 15 )|| 
+										mySpecialPower[u].xxSpecialPower < 15)
+										{
+													mySpecialPower[u].XspeedSpecialPower = mySpecialPower
+													[u].XspeedSpecialPower * -1;  
+										}
+					}
 			}
-
 
 
 
@@ -156,9 +191,13 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw()
 {
-	// Special power thing 
+	// Special Power thing 
+	for (int u = 0; u <= NUM_SPECIALPOWER; u++)
+	{
 	ofSetColor (250,0,30); 
-	ofCircle(xxSpecialPower,yySpecialPower,LSpecialPower,HSpecialPower ); 
+	ofCircle(mySpecialPower[u].xxSpecialPower, mySpecialPower[u].yySpecialPower,      
+	mySpecialPower[u].LSpecialPower, mySpecialPower[u].HSpecialPower ); 
+	}
 
 	// player
 	ofSetColor(90,90,90);

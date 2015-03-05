@@ -28,7 +28,26 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 		
 
-	
+
+		// on this way you make a constant that you can change if you want !!!!!
+		 #define NUM_SPECIALPOWER 1
+
+		// Player Struct
+		struct SpecialPower 
+		{ 
+				float xxSpecialPower; 
+				float yySpecialPower; 
+				int LSpecialPower; 
+				int HSpecialPower;  
+				float XspeedSpecialPower; 
+		};
+
+		// SpecialPower state 
+		int stateSpecialPower;
+
+		// Vector that holds how many Special Power why have 
+		        vector<SpecialPower> mySpecialPower;
+
 
 		// Player 
 		int xxMario; 
@@ -48,12 +67,12 @@ class ofApp : public ofBaseApp{
 		bool Switch; 
 
 		// Special Power thing 
-		float xxSpecialPower; 
-		float yySpecialPower; 
-		int LSpecialPower; 
-		int HSpecialPower; 
-		int stateSpecialPower; 
-		float XspeedSpecialPower; 
+		//float xxSpecialPower; 
+		//float yySpecialPower; 
+		//int LSpecialPower; 
+		//int HSpecialPower; 
+		//int stateSpecialPower; 
+		//float XspeedSpecialPower; 
 
 
 
