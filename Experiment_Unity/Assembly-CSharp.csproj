@@ -46,8 +46,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\scripts\GreenScare.cs" />
      <Compile Include="Assets\scripts\Jump3.cs" />
      <Compile Include="Assets\scripts\MoveCircel.cs" />
+     <Compile Include="Assets\scripts\PlayerTouchMe.cs" />
+     <Compile Include="Assets\scripts\ThouchingYellowScare.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
  </Reference>
