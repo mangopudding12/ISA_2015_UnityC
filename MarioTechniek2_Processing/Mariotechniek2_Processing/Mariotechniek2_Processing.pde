@@ -7,7 +7,7 @@ void setup()
 {
     size(1200,600);
   
-    mainPlayer = new Player();
+   mainPlayer = new Player();
   
 }
 
@@ -24,7 +24,7 @@ void draw()
   
   mainPlayer.display();
   mainPlayer.move(); 
-  
+  mainPlayer.jump(); 
   
   
 }  
