@@ -27,16 +27,27 @@ class PVector
        x = x + v.x;   
     }
     
+    // Trekt twee vectors van elkaar af. 
     void minus (PVector f)
     {
         y = y - f.y;
         x = x - f.x;
     }
     
+    // Magnitude = langte van de vector. 
     float mag()
     {
         return sqrt(x*x + y*y);
     }
+    
+    void limit (float max)
+    {
+        if (x > max)
+        {
+           x = max; 
+        }
+    }
+    
 }
 
 
