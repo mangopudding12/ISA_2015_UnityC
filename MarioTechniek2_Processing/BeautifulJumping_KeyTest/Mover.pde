@@ -33,41 +33,37 @@ boolean boe;
               if (key == 'k' || key == 'K')
               {    
                 
-              if (boe == true){  
-              if (location.y > 575) {
-                velocity.y *= -1;
-                location.y = 574;
-                boe = false;
-                }}
+                  if (boe == true)
+                  {  
+                      if (location.y > 575) 
+                      {
+                        velocity.y *= -1;
+                        location.y = 574;
+                        boe = false;
+                      }
+                  }
               
-              if (location.y > 575)
-            {
-                boe = true;
-            }  
+                  if (location.y > 575)
+                  {
+                      boe = true;
+                  }  
                 
-                   //println("Jumping");               
-    velocity.add(acceleration);
-    location.add(velocity);
-    acceleration.mult(0); 
-    velocity.limit (7);
-                acceleration.limit(1);
-    println(velocity);
-    println("hoi");
-    println(acceleration );
-    //println(location.y);
-            }
+                      velocity.add(acceleration);
+                      location.add(velocity);
+                      acceleration.mult(0); 
+                      velocity.limit (7);
+                      acceleration.limit(1);
+         }
               
         } else {
            if (location.y < 573){
+              
               velocity.add(acceleration);
               location.add(velocity);
               acceleration.mult(0);  
               velocity.limit (10);
-              
-                acceleration.limit(1);
-                println(velocity);
-    println("hoi2");
-    println(acceleration );
+              acceleration.limit(1);
+                  
            }
              else 
              {
