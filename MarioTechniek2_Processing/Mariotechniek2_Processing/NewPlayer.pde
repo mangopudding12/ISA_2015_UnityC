@@ -5,7 +5,8 @@
 // - Als je springt en je druk op links en rechts gebreuren er rare dingen. 
 // - Meer testen er zitten waarschijnlijk nog meer fouten in. 
 
-
+// ----------- Belangrijke informatie ----------------- 
+// Spring hoogte is ongeveer 268,9002
 
 
 class Player
@@ -21,6 +22,9 @@ class Player
     float massa;    // Die is de massa van het object - dit is nodig voor de gravity
     boolean ground; // Raakt het object de grond ?? 
   
+    float breedte; 
+    float hoogte; 
+    
   Player()
   {
         Location = new PVector(0,530); 
@@ -37,6 +41,9 @@ class Player
         topSpeed = 10;
         massa = 1; 
         ground = false; 
+        
+        breedte = 50; 
+        hoogte = 50; 
   }
   
   void display()
@@ -46,7 +53,7 @@ class Player
       // Belangrijk onthoud dat je geen vector kan gebruiken als argument binnen rect functie. 
       // want je moet precies aangeven welke waarde je aan spreekt. 
       // Dus bijvoorbeeld Location.x 
-      rect(Location.x,Location.y,50,50); 
+      rect(Location.x,Location.y,breedte,hoogte); 
       
       // De magnitude als je processing aan doet is 530 omdat x = 0 en y = 530 een schuine zijde 
       // creeërd van 530. 
@@ -63,6 +70,9 @@ class Player
               // Links movement 
               if (key == 'J' || key == 'j')
               {    
+                
+                if (ground == true)
+                  {
                     // versnelling wordt toegevoegt aan snelheid. 
                     Velocity.add (acceleration);
                     
@@ -71,15 +81,61 @@ class Player
                     
                     // De snelheid wordt aan locatie toegevoegt.
                     Location.sub (Velocity);    
+                  }
+                  else 
+                  {
+                      if (Location.y < 528)
+                      {
+                            // De spring omlaag functie   
+                            jumpVelocity.add(jumpacceleration);
+                            Location.add(jumpVelocity);
+                            jumpacceleration.mult(0);      
+                      
+                            // Zorgt ervoor dat je tijdens het springen ook naar links kan. 
+                            Velocity.add (acceleration);
+                            Velocity.limit(topSpeed); 
+                            Location.sub (Velocity);  
+                      }
+                      else 
+                      {
+                            // Zorgt ervoor dat als je keypressed is false dat je niet verder door de grond zakt. 
+                            Location.y = 530; 
+                            ground = true;
+                      }       
+                  }
               } 
              
              
               // Right movement 
               if(key =='l' || key == 'L')
               {
-                   Velocity.add (acceleration);
-                   Location.add(Velocity);
-                   Velocity.limit(topSpeed);
+                    if (ground == true)
+                    {
+                         Velocity.add (acceleration);
+                         Location.add(Velocity);
+                         Velocity.limit(topSpeed);
+                    } 
+                    else // ground is false 
+                    {
+                        if (Location.y < 528)
+                        {
+                            // De spring omlaag functie   
+                            jumpVelocity.add(jumpacceleration);
+                            Location.add(jumpVelocity);
+                            jumpacceleration.mult(0);      
+                      
+                            // Zorgt ervoor dat je tijdens het springen ook naar links kan. 
+                            Velocity.add (acceleration);
+                            Velocity.limit(topSpeed); 
+                            Location.add (Velocity);  
+                        }
+                        else 
+                        {
+                            // Zorgt ervoor dat als je keypressed is false dat je niet verder door de grond zakt. 
+                            Location.y = 530; 
+                            ground = true;
+                        } 
+                    }
               } 
         } 
         else // Als keypressed if false !!!  
@@ -122,9 +178,11 @@ class Player
                         }
 
                    }
-                
-                   jumpVelocity.add(jumpacceleration);
-                   Location.add(jumpVelocity); 
+                   
+                   // Als je k druk dan .....
+                   jumpVelocity.add(jumpacceleration); // jumpacceleration zorgt voor versnellen van object.
+                   jumpVelocity.limit(9); // Zorgt dat je niet te hoog kan springen. Geen hogere snelheid dan 7.
+                   Location.add(jumpVelocity);
                    
                    // Hier wordt de acceleration gereset, voor de volgende keer als je springt. 
                    jumpacceleration.mult(0);
@@ -132,23 +190,24 @@ class Player
         } // KeyPressed is false 
         else 
         {
-              if (Location.y < 530)
+              if (Location.y < 528)
               {
                   jumpVelocity.add(jumpacceleration);
+                  jumpVelocity.limit(9);
+ 
                   Location.add(jumpVelocity);
                   jumpacceleration.mult(0);      
               }
               else 
               {
+                // Zorgt ervoor dat als je keypressed is false dat je niet verder door de grond zakt. 
+                Location.y = 530;
+                
                 ground = true;
               }
-        }
-        
-        
-        
-        
-        
+        }        
   }
   
-}
+  
+} // end of the class 
 
