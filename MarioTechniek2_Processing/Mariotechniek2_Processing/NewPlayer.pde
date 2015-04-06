@@ -23,7 +23,9 @@ class Player
     boolean ground; // Raakt het object de grond ?? 
   
     float breedte; 
-    float hoogte; 
+    float hoogte;
+   
+    float JumpVelocity_Max; 
     
   Player()
   {
@@ -43,7 +45,8 @@ class Player
         ground = false; 
         
         breedte = 50; 
-        hoogte = 50; 
+        hoogte = 50;
+        JumpVelocity_Max = 9; 
   }
   
   void display()
@@ -181,7 +184,7 @@ class Player
                    
                    // Als je k druk dan .....
                    jumpVelocity.add(jumpacceleration); // jumpacceleration zorgt voor versnellen van object.
-                   jumpVelocity.limit(9); // Zorgt dat je niet te hoog kan springen. Geen hogere snelheid dan 7.
+                   jumpVelocity.limit(JumpVelocity_Max); // Zorgt dat je niet te hoog kan springen. Geen hogere snelheid dan 7.
                    Location.add(jumpVelocity);
                    
                    // Hier wordt de acceleration gereset, voor de volgende keer als je springt. 
@@ -193,7 +196,7 @@ class Player
               if (Location.y < 528)
               {
                   jumpVelocity.add(jumpacceleration);
-                  jumpVelocity.limit(9);
+                  jumpVelocity.limit(JumpVelocity_Max);
  
                   Location.add(jumpVelocity);
                   jumpacceleration.mult(0);      
