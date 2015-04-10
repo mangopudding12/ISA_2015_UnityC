@@ -13,22 +13,28 @@
 
 class Enemy
 { 
-  
-  
+    float xEnemy; 
+    float yEnemy;
+     
   
     // Contructor 
     Enemy() 
     {  
+      xEnemy = 500;
+      yEnemy = 20;
+      
     }
   
   
     void display() 
     {
+        rect(xEnemy,yEnemy,20,40);
     }
     
     
     void move() 
     {
+       
     }
     
   
