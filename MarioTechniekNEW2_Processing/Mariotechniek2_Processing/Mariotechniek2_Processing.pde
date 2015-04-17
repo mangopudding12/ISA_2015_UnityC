@@ -1,42 +1,29 @@
+// The classes 
+Player MainPlayer; 
+Muren[] Objects; 
 
-
-// Ik heb heel hard geprobeerd te programmeren dat het ook mogelijk was. 
-// Om van de muur af te springen. Maar ik weet echt niet waarom het niet lukt. 
-// Dat is gewoon heel erg vaag !!! 
-
-// Intersection rechterkant muur nog maken. Daar kan je nog steeds als een spook door heen. 
-
-
-// Making the Enemy 
-Enemy Enemy1;
-
-// Making the player
-Player mainPlayer;
-
-// Maak 1 muur. 
-Muren  muur1;
-Muren  muur2; 
-
-boolean sta_opMuur; // muur1 
-boolean sta_opMuur2;
+// Variables 
+int HowMuch_Objects; 
 
 
 void setup() 
 {
    // size of the screen. 
    size(1200,600);
+   
+   // Making the Player. 
+   MainPlayer = new Player ();
+ 
+   // Making the objects walls and ground plate. 
+   HowMuch_Objects = 3; 
+   Objects = new Muren[HowMuch_Objects]; 
+   
+   // Making the 3 Objects from walls and ground plate. 
+   for (int i = 0; i < HowMuch_Objects-1; i++)
+   {
+      Objects[i] = new Muren(1000,yScreen-470,80,240); 
+   }
   
-   // Telling it is a new player. 
-   mainPlayer = new Player();
-   
-   Enemy1 = new Enemy();
-   
-   // Making the prefect muur. 
-   muur1 = new Muren (400,380,60,200);
-   muur2 = new Muren (850,380,60,200);
-   
-   sta_opMuur = false;
-   sta_opMuur2 = false; 
 }
 
 
@@ -45,29 +32,12 @@ void draw()
     // The background per frame opnieuw getekend. 
     background(255); 
   
-    // Grond 
-    noStroke(); 
-    fill(255,232,15);
-    rect(0,580,1200,20);
-    
-    // The Force werken alleen op de jump functie.
-    PVector gravity = new PVector(0,0.15); 
-    mainPlayer.applyForce(gravity);
-    mainPlayer.jump();
-    
-    // Intersection between muren and player. 
-    intersectionmuur1();
-    intersectionmuur2();
-    mainPlayer.move();
-    
-        
-    // Display / move / jump player 
-    mainPlayer.display();
-    Enemy1.display();
-    
-    // Draw the muur. 
-    muur1.display(); 
-    muur2.display();
+   PVector gravity = new PVector(0,0.15); 
+   MainPlayer.applyForce(gravity);
+   
+   MainPlayer.move(); 
+   MainPlayer.jump();  
+   MainPlayer.display(); 
 }  
 
 

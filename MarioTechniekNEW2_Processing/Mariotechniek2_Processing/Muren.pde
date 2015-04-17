@@ -32,9 +32,5 @@ class Muren
     {
         fill (150,10,90);
         rect (xmuur,ymuur,breedte,hoogte);
-    }
-    
-  
-    
-  
+    } 
 }

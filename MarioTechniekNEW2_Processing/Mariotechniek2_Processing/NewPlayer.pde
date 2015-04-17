@@ -24,9 +24,14 @@ class Player
   
     float breedte; 
     float hoogte;
-   
     float JumpVelocity_Max; 
     
+    // Invisible line thing. 
+    float yInvisible_Line;  
+    
+    
+    
+  // Contructor 
   Player()
   {
         Location = new PVector(0,530); 
@@ -52,19 +57,14 @@ class Player
   void display()
   {
       fill(100,200,50);
+      noStroke(); 
       
       // Belangrijk onthoud dat je geen vector kan gebruiken als argument binnen rect functie. 
       // want je moet precies aangeven welke waarde je aan spreekt. 
       // Dus bijvoorbeeld Location.x 
       rect(Location.x,Location.y,breedte,hoogte); 
       
-      // De magnitude als je processing aan doet is 530 omdat x = 0 en y = 530 een schuine zijde 
-      // creeërd van 530. 
-      //float m = Location.mag();
-      //fill(90,100,200);
-      //rect (0,0,m,10);
-      //println(Location.mag());
-  }
+   }
   
   void move()
   {    
@@ -74,8 +74,6 @@ class Player
               if (key == 'J' || key == 'j')
               {    
                 
-                if (ground == true)
-                  {
                     // versnelling wordt toegevoegt aan snelheid. 
                     Velocity.add (acceleration);
                     
@@ -84,61 +82,15 @@ class Player
                     
                     // De snelheid wordt aan locatie toegevoegt.
                     Location.sub (Velocity);    
-                  }
-                  else 
-                  {
-                      if (Location.y < 528)
-                      {
-                            // De spring omlaag functie   
-                            jumpVelocity.add(jumpacceleration);
-                            Location.add(jumpVelocity);
-                            jumpacceleration.mult(0);      
-                      
-                            // Zorgt ervoor dat je tijdens het springen ook naar links kan. 
-                            Velocity.add (acceleration);
-                            Velocity.limit(topSpeed); 
-                            Location.sub (Velocity);  
-                      }
-                      else 
-                      {
-                            // Zorgt ervoor dat als je keypressed is false dat je niet verder door de grond zakt. 
-                            Location.y = 530; 
-                            ground = true;
-                      }       
-                  }
-              } 
+               } 
              
              
               // Right movement 
               if(key =='l' || key == 'L')
               {
-                    if (ground == true)
-                    {
                          Velocity.add (acceleration);
                          Location.add(Velocity);
-                         Velocity.limit(topSpeed);
-                    } 
-                    else // ground is false 
-                    {
-                        if (Location.y < 528)
-                        {
-                            // De spring omlaag functie   
-                            jumpVelocity.add(jumpacceleration);
-                            Location.add(jumpVelocity);
-                            jumpacceleration.mult(0);      
-                      
-                            // Zorgt ervoor dat je tijdens het springen ook naar links kan. 
-                            Velocity.add (acceleration);
-                            Velocity.limit(topSpeed); 
-                            Location.add (Velocity);  
-                        }
-                        else 
-                        {
-                            // Zorgt ervoor dat als je keypressed is false dat je niet verder door de grond zakt. 
-                            Location.y = 530; 
-                            ground = true;
-                        } 
-                    }
+                         Velocity.limit(topSpeed);                
               } 
         } 
         else // Als keypressed if false !!!  
@@ -158,30 +110,21 @@ class Player
   }
   
   
+  void ground() 
+  {
+    // Trying to make a invisible line under the player. 
+    // This will detect the ground if that is true or not. 
+    
+     noStroke(); 
+     line ((Location.x+breedte)/ 2, Location.y+hoogte,(Location.x+breedte)/2,yInvisible_Line);
+  }
+  
   void jump()
   {
      if (keyPressed == true)
         {
               if (key == 'k' || key == 'K')
-              {    
-                   // Als je wilt springen en je staat op de ground moet ground true zijn anders ga je door grond heen.              
-                   if (Location.y > 530)
-                   {
-                        ground = true;
-                   }  
-                
-                   // Als object de ground raakt dan wordt jumpVelocity negatief zodat die niet door ground zakt. 
-                   if (ground == true)
-                   {
-                        if (Location.y > 530) 
-                        {
-                            jumpVelocity.y *= -1;
-                            Location.y = 529;
-                            ground = false;
-                        }
-
-                   }
-                   
+              {         
                    // Als je k druk dan .....
                    jumpVelocity.add(jumpacceleration); // jumpacceleration zorgt voor versnellen van object.
                    jumpVelocity.limit(JumpVelocity_Max); // Zorgt dat je niet te hoog kan springen. Geen hogere snelheid dan 7.
@@ -190,25 +133,7 @@ class Player
                    // Hier wordt de acceleration gereset, voor de volgende keer als je springt. 
                    jumpacceleration.mult(0);
               }
-        } // KeyPressed is false 
-        else 
-        {
-              if (Location.y < 528)
-              {
-                  jumpVelocity.add(jumpacceleration);
-                  jumpVelocity.limit(JumpVelocity_Max);
- 
-                  Location.add(jumpVelocity);
-                  jumpacceleration.mult(0);      
-              }
-              else 
-              {
-                // Zorgt ervoor dat als je keypressed is false dat je niet verder door de grond zakt. 
-                Location.y = 530;
-                
-                ground = true;
-              }
-        }        
+        }
   }
   
   
