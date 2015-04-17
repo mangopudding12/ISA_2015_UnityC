@@ -52,6 +52,7 @@ class Player
         breedte = 50; 
         hoogte = 50;
         JumpVelocity_Max = 9; 
+        yInvisible_Line = Location.y+hoogte;
   }
   
   void display()
@@ -63,7 +64,6 @@ class Player
       // want je moet precies aangeven welke waarde je aan spreekt. 
       // Dus bijvoorbeeld Location.x 
       rect(Location.x,Location.y,breedte,hoogte); 
-      
    }
   
   void move()
@@ -110,14 +110,6 @@ class Player
   }
   
   
-  void ground() 
-  {
-    // Trying to make a invisible line under the player. 
-    // This will detect the ground if that is true or not. 
-    
-     noStroke(); 
-     line ((Location.x+breedte)/ 2, Location.y+hoogte,(Location.x+breedte)/2,yInvisible_Line);
-  }
   
   void jump()
   {
@@ -125,13 +117,23 @@ class Player
         {
               if (key == 'k' || key == 'K')
               {         
-                   // Als je k druk dan .....
-                   jumpVelocity.add(jumpacceleration); // jumpacceleration zorgt voor versnellen van object.
-                   jumpVelocity.limit(JumpVelocity_Max); // Zorgt dat je niet te hoog kan springen. Geen hogere snelheid dan 7.
-                   Location.add(jumpVelocity);
-                   
-                   // Hier wordt de acceleration gereset, voor de volgende keer als je springt. 
-                   jumpacceleration.mult(0);
+//                   // Als je k druk dan .....
+//                   jumpVelocity.add(jumpacceleration); // jumpacceleration zorgt voor versnellen van object.
+//                   jumpVelocity.limit(JumpVelocity_Max); // Zorgt dat je niet te hoog kan springen. Geen hogere snelheid dan 7.
+//                   Location.add(jumpVelocity);
+//                   
+//                   // Hier wordt de acceleration gereset, voor de volgende keer als je springt. 
+//                   jumpacceleration.mult(0);
+
+                     Location.y --;  
+                     
+                     
+
+              }
+              
+              if (key == 't')
+              {
+                  Location.y ++; 
               }
         }
   }

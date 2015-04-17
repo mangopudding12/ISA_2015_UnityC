@@ -16,7 +16,10 @@ class Muren
     public float hoogte; 
     public float breedte; 
     
-       
+    float kleur1; 
+    float kleur2;
+    float kleur3; 
+           
   
     // Contructor 
     Muren(float xmuur_,float ymuur_,float breedte_,float hoogte_) 
@@ -28,9 +31,13 @@ class Muren
     }
   
   
-    void display() 
+    void display(float kleur1_,float kleur2_,float kleur3_) 
     {
-        fill (150,10,90);
-        rect (xmuur,ymuur,breedte,hoogte);
+       kleur1 = kleur1_; 
+       kleur2 = kleur2_;
+       kleur3 = kleur3_; 
+       
+       fill (kleur1,kleur2,kleur3);
+       rect (xmuur,ymuur,breedte,hoogte);
     } 
 }
