@@ -1,5 +1,6 @@
 // The classes 
-Player MainPlayer; 
+Player MainPlayer;
+Player Enemy; 
 Muren[] Objects; 
 
 // Variables 
@@ -15,7 +16,8 @@ void setup()
    size(1200,600);
    
    // Making the Player. 
-   MainPlayer = new Player ();
+   MainPlayer = new Player (0,530,50,50);
+   Enemy = new Player (520,100,20,40);
  
    // Making the objects walls and ground plate. 
    HowMuch_Objects = 3; 
@@ -36,10 +38,10 @@ void draw()
        // Making the gravity alive so that you can jump
        PVector gravity = new PVector(0,0.15); 
        MainPlayer.applyForce(gravity);
-       
+
        // Function / display the player.
-       MainPlayer.move(); 
-       MainPlayer.jump();  
+       MainPlayer.move(10); 
+       MainPlayer.jump(10);  
        MainPlayer.display(); 
         
 // --------------------------------------------- For loop part ---------------------------
@@ -89,14 +91,18 @@ void draw()
                    }
 
                 // Intersection Top side 
-                if (MainPlayer.Location.y + MainPlayer.hoogte > Objects[p].ymuur )
+                if (MainPlayer.Location.y + MainPlayer.hoogte >= Objects[p].ymuur && MainPlayer.Location.x < Objects[p].xmuur + Objects[p].breedte && MainPlayer.Location.x + MainPlayer.breedte > Objects[p].xmuur )
                    {
-                     if (MainPlayer.Location.x < Objects[p].xmuur + Objects[p].breedte && MainPlayer.Location.x + MainPlayer.breedte > Objects[p].xmuur)
-                      {
                            println(p);
+                           println("Ground true");
                            MainPlayer.Location.y = Objects[p].ymuur - (MainPlayer.hoogte); 
-                      }
-                   } 
+                           println(MainPlayer.jumpVelocity.y);
+                           MainPlayer.ground = true; 
+                   } else { 
+                      println(MainPlayer.jumpVelocity.y);
+                     println("Ground false");
+                     MainPlayer.ground = false;
+                   }
                    
            // Detecting if player touch a object. 
            lijn();
