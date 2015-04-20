@@ -12,24 +12,24 @@
 class Player
 { 
     PVector Location; // x en y locatie
-    PVector LocationEnemy; // x en y locatie 
+    //PVector LocationEnemy; // x en y locatie 
      
     PVector Velocity; // snelheid Links
     PVector acceleration; // versnelling
-    
-    PVector jumpacceleration; // versnelling voor jumping
-    PVector jumpVelocity;
-    
+     
     float topSpeed; // Die is de maximale snelheid die Velocity kan halen. 
     float massa;    // Die is de massa van het object - dit is nodig voor de gravity
     boolean ground; // Raakt het object de grond ?? 
   
     float breedte; 
     float hoogte;
-    float JumpVelocity_Max; 
+    float yInvisible_Line;  // Invisible line thing. 
     
-    // Invisible line thing. 
-    float yInvisible_Line;  
+    // Jumping player
+    float jumpVelocitymax; 
+    PVector jumpacceleration; // versnelling voor jumping
+    PVector jumpVelocity;
+    
     
     
     
@@ -40,7 +40,7 @@ class Player
         breedte = breedte_; 
         hoogte = hoogte_;
         Location = new PVector(Locationx_,Locationy_);
-        LocationEnemy = new PVector(Locationx_,Locationy_);
+//        LocationEnemy = new PVector(Locationx_,Locationy_);
 
 
        
@@ -72,10 +72,6 @@ class Player
    }
 
   
-  void MoveEnemy()
-  {
-      Location.add(Velocity);        
-  } 
 
 
 
@@ -90,8 +86,7 @@ class Player
         {
               // Links movement 
               if (key == 'J' || key == 'j')
-              {    
-                
+              {            
                     // versnelling wordt toegevoegt aan snelheid. 
                     Velocity.add (acceleration);
                     
@@ -129,43 +124,37 @@ class Player
   
   
   
-  void jump(float JumpVelocity_Max_)
+  void jump(float jumpVelocitymax_)
   {
-    // Getting data from the main class. 
-    JumpVelocity_Max = JumpVelocity_Max_; 
+         // Getting data from the main class. 
+         jumpVelocitymax = jumpVelocitymax_; 
     
-    
-     if (keyPressed == true)
-        {
-              if (key == 'k' || key == 'K')
-              {         
-                   if (ground == true)
-                   {
-                       // Als je k druk dan .....
-                       jumpVelocity.add(jumpacceleration); // jumpacceleration zorgt voor versnellen van object.
-                       jumpVelocity.limit(JumpVelocity_Max); // Zorgt dat je niet te hoog kan springen. Geen hogere snelheid dan 7.
-                       
-                       // Bounce of the walls when ground = true.
-                       // Let stand on this place Important else it won't work.
-                       if (jumpVelocity.y >= 0)
-                       {
-                           jumpVelocity.y *= -1;
-                       }
-                    
-                       Location.add(jumpVelocity);
-                   
-                       // Hier wordt de acceleration gereset, voor de volgende keer als je springt. 
-                       jumpacceleration.mult(0);
-                   } 
-              }
-//              
-//               if (key == 't' || key == 'T')
-//              {
-//                Location.y --; 
-//              }
-        }
+         // Makes the player jump 
+         jumpVelocity.limit (jumpVelocitymax);
+         jumpVelocity.add(jumpacceleration);
+         Location.add(jumpVelocity);
+         jumpacceleration.mult(0);
   }
   
   
+  void PossibleJump()
+  {  
+         if (ground == true) 
+         {
+              if (keyPressed) 
+              {
+                  if (key == 'k' || key == 'K')
+                  {
+                       jumpVelocity.y *= -1;
+                       jumpVelocity.limit (jumpVelocitymax);
+                       println(jumpVelocity.y);
+                  }
+              }          
+         } 
+  } // EndPossibleJump___ if statement 
+  
+  
+  
+    
 } // end of the class 
 

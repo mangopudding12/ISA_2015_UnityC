@@ -21,7 +21,7 @@ class Mover {
     
     velocitymax = 10;
     
-    h = false;
+   
   }
   
   void applyForce(PVector force) {
@@ -45,15 +45,9 @@ class Mover {
     ellipse(location.x,location.y,48,48);
   }
 
-  void checkEdges() {
+  void checkEdges() 
+  {
 
-    if (location.x > width) {
-      location.x = width;
-      velocity.x *= -1;
-    } else if (location.x < 0) {
-      velocity.x *= -1;
-      location.x = 0;
-    }
 
     if (location.y > height - (48/2)) 
     {
