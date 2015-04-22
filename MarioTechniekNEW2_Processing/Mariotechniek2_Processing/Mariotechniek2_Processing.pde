@@ -35,11 +35,11 @@ void draw()
        // The background per frame opnieuw getekend. 
        background(255); 
   
-  
-      // Making the gravity alive so that you can jump
+       
+       // Making the gravity alive so that you can jump
        PVector gravity = new PVector(0,0.15); 
        MainPlayer.applyForce(gravity);
-                   
+       
        // Function / display the player.
        MainPlayer.move(10); 
                            
@@ -65,57 +65,62 @@ void draw()
                k2 = 250; 
            } 
            
-           // Making the walls and the ground.
-           noStroke();  
-           Objects[p].display(k,k1,k2);          
             
             
            // Collision detection between objects and player. 
            
-                 // Intersection Right side // Important the -1 don't remove
-                 // When the -1 is gone the player will touch the top from the wall and will spring to the side of the wall weird !!! 
-//                 if (MainPlayer.Location.y + (MainPlayer.hoogte-1) > Objects[p].ymuur)
-//                 { 
-//                   if (MainPlayer.Location.x < Objects[p].xmuur + Objects[p].breedte && MainPlayer.Location.x > Objects[p].xmuur)
-//                   {
-//                       println(p); 
-//                       MainPlayer.Location.x = Objects[p].xmuur + Objects[p].breedte;
-//                   }               
-//                 }
-
-                // Intersection Left side 
-//                if (MainPlayer.Location.y + (MainPlayer.hoogte -1) > Objects[p].ymuur)
-//                   {               
-//                     // Hier gaan ook dingen verkeerd !!! volgens mij moeten het aparte lijnene worden.
-//                     if (MainPlayer.Location.x + MainPlayer.breedte > Objects[p].xmuur && MainPlayer.Location.x < Objects[p].xmuur + Objects[p].breedte)
-//                     {
-//                         println(p); 
-//                         MainPlayer.Location.x = Objects[p].xmuur - MainPlayer.breedte;
-//                     }  
-//                   }
-
-                MainPlayer.jump(5); // Het werkt als het hier staat.
-
                 // Intersection Top side 
-                if (MainPlayer.Location.y + MainPlayer.hoogte >= Objects[p].ymuur && MainPlayer.Location.x < Objects[p].xmuur + Objects[p].breedte && MainPlayer.Location.x + MainPlayer.breedte > Objects[p].xmuur )
+                if (MainPlayer.Location.y + (MainPlayer.hoogte) >= Objects[p].ymuur)
                    {
-                           println(p);
-                           println("Ground true");
-                           println("velocity"); 
-                           println(MainPlayer.jumpVelocity.y);
-                           MainPlayer.ground = true;
-                          MainPlayer.Location.y = Objects[p].ymuur - (MainPlayer.hoogte); 
+                     println("fase1");
+                       if (MainPlayer.Location.x + MainPlayer.breedte > Objects[p].xmuur)
+                       {
+                               println("fase2");
+                           if (MainPlayer.Location.x < Objects[p].xmuur + Objects[p].breedte) 
+                           {
+                               println("fase3");
+                               println(p);
+                               println("Ground true");
+                               MainPlayer.Location.y = Objects[p].ymuur - (MainPlayer.hoogte+20); 
+                               MainPlayer.ground = true;
+                           }
+                       }
                    } else { 
-                     //println(MainPlayer.jumpVelocity.y);
                      println(p);
                      println("Ground false");
                      MainPlayer.ground = false;
                    }
-       
-                     
-                   MainPlayer.PossibleJump();
-                   MainPlayer.display();          
+
+
+                     // Intersection Left side          
+                     // Hier gaan ook dingen verkeerd !!! volgens mij moeten het aparte lijnene worden.
+//                     if (MainPlayer.Location.y + (MainPlayer.hoogte -5) > Objects[p].ymuur && MainPlayer.Location.x + MainPlayer.breedte > Objects[p].xmuur && MainPlayer.Location.x < Objects[p].xmuur + Objects[p].breedte)
+//                     {
+//                       println("Function2");
+//                         println(p); 
+//                         MainPlayer.Location.x = Objects[p].xmuur - MainPlayer.breedte;
+//                     }  
+          
+                 // Intersection Right side // Important the -1 don't remove
+                 // When the -1 is gone the player will touch the top from the wall and will spring to the side of the wall weird !!! 
+//                   if (MainPlayer.Location.y + (MainPlayer.hoogte-1) > Objects[p].ymuur && MainPlayer.Location.x < Objects[p].xmuur + Objects[p].breedte && MainPlayer.Location.x > Objects[p].xmuur)
+//                   {
+//                       println(p); 
+//                       MainPlayer.Location.x = Objects[p].xmuur + Objects[p].breedte;
+//                   }               
+
+          
+           MainPlayer.jump(5); // Het werkt als het hier staat.   
+           MainPlayer.PossibleJump();
+           MainPlayer.display();
+                
+           // Making the walls and the ground.
+           noStroke();  
+           Objects[p].display(k,k1,k2);          
         } // end forloop
+        
+                  
+           
 }  
 
 

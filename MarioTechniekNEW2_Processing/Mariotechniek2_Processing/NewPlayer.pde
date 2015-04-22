@@ -140,7 +140,7 @@ class Player
   void PossibleJump()
   {  
          if (ground == true) 
-         {
+         {   
               if (keyPressed) 
               {
                   if (key == 'k' || key == 'K')
