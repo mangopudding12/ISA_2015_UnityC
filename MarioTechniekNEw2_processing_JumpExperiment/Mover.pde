@@ -14,7 +14,7 @@ class Mover {
 
 
   Mover() {
-    location = new PVector(30,30);
+    location = new PVector(30,height - (48/2));
     velocity = new PVector(0,0);
     acceleration = new PVector(0,0);
     mass = 1;

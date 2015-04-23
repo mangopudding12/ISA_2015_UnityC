@@ -19,7 +19,8 @@ class Player
      
     float topSpeed; // Die is de maximale snelheid die Velocity kan halen. 
     float massa;    // Die is de massa van het object - dit is nodig voor de gravity
-    boolean ground; // Raakt het object de grond ?? 
+    boolean ground; // Raakt het object de wall ?? 
+    boolean ground2; // grond
   
     float breedte; 
     float hoogte;
@@ -40,9 +41,6 @@ class Player
         breedte = breedte_; 
         hoogte = hoogte_;
         Location = new PVector(Locationx_,Locationy_);
-//        LocationEnemy = new PVector(Locationx_,Locationy_);
-
-
        
         Velocity = new PVector(4,0); 
         // Moet heel klein zijn anders wordt Velocity langzaam heel veel sneller. 
@@ -56,7 +54,17 @@ class Player
         // Variabelen. 
         massa = 1; 
         ground = false;  
+        ground2 = false; 
         yInvisible_Line = Location.y+hoogte;
+        jumpVelocitymax = 10;
+  }
+
+  // Deze functie telt alle krachten zoals wind of zwaartekracht bij elkaar op 
+  // Dan deelt hij deze krachten door de massa. Zo krijg je dus krachten die werken op jou object. 
+  void applyForce(PVector force)
+  {
+      PVector f = PVector.div(force,massa); 
+      jumpacceleration.add(f);
   }
 
   
@@ -114,25 +122,16 @@ class Player
   }
   
 
-  // Deze functie telt alle krachten zoals wind of zwaartekracht bij elkaar op 
-  // Dan deelt hij deze krachten door de massa. Zo krijg je dus krachten die werken op jou object. 
-  void applyForce(PVector force)
+  
+  
+  
+  void jump()
   {
-      PVector f = PVector.div(force,massa); 
-      jumpacceleration.add(f);
-  }
-  
-  
-  
-  void jump(float jumpVelocitymax_)
-  {
-         // Getting data from the main class. 
-         jumpVelocitymax = jumpVelocitymax_; 
-    
          // Makes the player jump 
-         jumpVelocity.limit (jumpVelocitymax);
+         jumpVelocity.limit (jumpVelocitymax);  
          jumpVelocity.add(jumpacceleration);
          Location.add(jumpVelocity);
+         jumpVelocity.limit (jumpVelocitymax);
          jumpacceleration.mult(0);
   }
   
@@ -147,10 +146,24 @@ class Player
                   {
                        jumpVelocity.y *= -1;
                        jumpVelocity.limit (jumpVelocitymax);
-                       println(jumpVelocity.y);
+                       MainPlayer.ground = false;
                   }
-              }          
-         } 
+              }               
+         }
+        
+        if (ground2 == true) 
+         {   
+              if (keyPressed) 
+              {
+                println("ground2keypressed");
+                  if (key == 'k' || key == 'K')
+                  {
+                       jumpVelocity.y *= -1;
+                       jumpVelocity.limit (jumpVelocitymax);
+                       MainPlayer.ground2 = false;
+                  }
+              }               
+         }  
   } // EndPossibleJump___ if statement 
   
   
