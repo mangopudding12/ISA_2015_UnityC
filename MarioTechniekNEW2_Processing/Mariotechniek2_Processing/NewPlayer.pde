@@ -32,6 +32,7 @@ class Player
     PVector jumpVelocity;
     boolean Trying; 
     int pop; 
+  
     
     
   // Contructor 
@@ -57,7 +58,7 @@ class Player
         ground2 = false; 
         yInvisible_Line = Location.y+hoogte;
         jumpVelocitymax = 9;
-        pop =0;
+        topSpeed = 10; 
   }
 
   // Deze functie telt alle krachten zoals wind of zwaartekracht bij elkaar op 
@@ -86,10 +87,9 @@ class Player
 
 
   
-  void move(float topSpeed_)
-  {    
+  void move(){
     // Getting the data from the main class.
-    topSpeed = topSpeed_; 
+    
     
         if (keyPressed == true)
         {
@@ -140,7 +140,7 @@ class Player
   void PossibleJump()
   {  
          // ground = wall collosion 
-         if (ground == true || pop > 0) 
+         if (ground == true) 
          {   
               if (keyPressed) 
               {
@@ -148,8 +148,7 @@ class Player
                   {
                        jumpVelocity.y *= -1;
                        jumpVelocity.limit (jumpVelocitymax);
-                       MainPlayer.ground = false;  
-                       MainPlayer.pop = 0;
+                       MainPlayer.ground = false;    
                   }
               }               
          } else {
