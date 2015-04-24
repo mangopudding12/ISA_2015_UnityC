@@ -62,18 +62,20 @@ void draw()
                k1 = 200;
                k2 = 250; 
            } 
-           
-           println(MainPlayer.Location.x);
-           println(MainPlayer.Location.y);  
+             
                        
           
            // Grond collsion 
            if (MainPlayer.Location.x < grond.xground + grond.breedte && MainPlayer.Location.x + MainPlayer.breedte > grond.xground + 2 && MainPlayer.Location.y + MainPlayer.hoogte > grond.yground - MainPlayer.jumpVelocity.y)
            { 
                 MainPlayer.Location.y = (grond.yground-MainPlayer.jumpVelocity.y) - MainPlayer.hoogte;
-                println("ground = true");
                 MainPlayer.ground2 = true;
-           } 
+                MainPlayer.pop = 1;
+                println("grondbovenop");
+                println( MainPlayer.ground2);
+           } else {
+             MainPlayer.ground2 = false;
+           }
                      
                      
            // Collision detection between objects and player. 
@@ -81,27 +83,28 @@ void draw()
            if (MainPlayer.Location.x < Objects[p].xmuur + (Objects[p].breedte -12) && MainPlayer.Location.x + MainPlayer.breedte > Objects[p].xmuur + 12 && MainPlayer.Location.y + MainPlayer.hoogte > Objects[p].ymuur - MainPlayer.jumpVelocity.y)
            { 
                        MainPlayer.Location.y = (Objects[p].ymuur-MainPlayer.jumpVelocity.y) - MainPlayer.hoogte;
-                        println("muur = true");
-                        println("1");
+                       println("Bovenop");
                        MainPlayer.ground = true;
+                       println(MainPlayer.ground);
            } 
                // Linkerkant wall 
-               else if (MainPlayer.Location.x + MainPlayer.breedte >= Objects[p].xmuur && MainPlayer.Location.y + MainPlayer.hoogte > Objects[p].ymuur - MainPlayer.jumpVelocity.y && MainPlayer.Location.x + MainPlayer.breedte < Objects[p].xmuur + MainPlayer.jumpVelocity.y)
+               else if (MainPlayer.Location.x + MainPlayer.breedte >= Objects[p].xmuur && MainPlayer.Location.y + MainPlayer.hoogte > Objects[p].ymuur - MainPlayer.jumpVelocity.y && MainPlayer.Location.x + MainPlayer.breedte < Objects[p].xmuur + (MainPlayer.jumpVelocity.y+1))
                {
-                 println("2");
                     MainPlayer.Location.x = Objects[p].xmuur - MainPlayer.breedte; 
+                    println("Linkerkant");
+                    MainPlayer.ground = false;
+                    println(MainPlayer.ground);
                }
                
                // Rechterkant wall
-               else if (MainPlayer.Location.y + MainPlayer.hoogte > Objects[p].ymuur - MainPlayer.jumpVelocity.y && MainPlayer.Location.x < Objects[p].xmuur + Objects[p].breedte && MainPlayer.Location.x > Objects[p].xmuur + (Objects[p].breedte - MainPlayer.jumpVelocity.y))
+               else if (MainPlayer.Location.y + MainPlayer.hoogte > Objects[p].ymuur - MainPlayer.jumpVelocity.y && MainPlayer.Location.x < Objects[p].xmuur + Objects[p].breedte && MainPlayer.Location.x > Objects[p].xmuur + (Objects[p].breedte - (MainPlayer.jumpVelocity.y+1)))
                { 
-                 println("3");
-                       MainPlayer.Location.x = Objects[p].xmuur + Objects[p].breedte;
+                    MainPlayer.Location.x = Objects[p].xmuur + Objects[p].breedte;
+                    println("Rechterkant");
+                    MainPlayer.ground = false;
+                    println(MainPlayer.ground);
                }           
-           else 
-           {
-             println("muur = false");
-           }
+         
                  // Making the walls and the ground.
                  noStroke();  
                  Objects[p].display(k,k1,k2);                      

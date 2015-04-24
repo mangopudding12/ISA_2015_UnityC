@@ -30,8 +30,8 @@ class Player
     float jumpVelocitymax; 
     PVector jumpacceleration; // versnelling voor jumping
     PVector jumpVelocity;
-    
-    
+    boolean Trying; 
+    int pop; 
     
     
   // Contructor 
@@ -56,7 +56,8 @@ class Player
         ground = false;  
         ground2 = false; 
         yInvisible_Line = Location.y+hoogte;
-        jumpVelocitymax = 10;
+        jumpVelocitymax = 9;
+        pop =0;
   }
 
   // Deze functie telt alle krachten zoals wind of zwaartekracht bij elkaar op 
@@ -138,7 +139,8 @@ class Player
   
   void PossibleJump()
   {  
-         if (ground == true) 
+         // ground = wall collosion 
+         if (ground == true || pop > 0) 
          {   
               if (keyPressed) 
               {
@@ -146,16 +148,20 @@ class Player
                   {
                        jumpVelocity.y *= -1;
                        jumpVelocity.limit (jumpVelocitymax);
-                       MainPlayer.ground = false;
+                       MainPlayer.ground = false;  
+                       MainPlayer.pop = 0;
                   }
               }               
+         } else {
+            println("key = false");
+            println(MainPlayer.ground);
          }
         
+        // ground2 = ground collosion 
         if (ground2 == true) 
          {   
               if (keyPressed) 
               {
-                println("ground2keypressed");
                   if (key == 'k' || key == 'K')
                   {
                        jumpVelocity.y *= -1;
@@ -163,7 +169,14 @@ class Player
                        MainPlayer.ground2 = false;
                   }
               }               
-         }  
+         }  else {
+            println("key = false");
+            println(MainPlayer.ground2);
+         }
+         
+       
+         
+         
   } // EndPossibleJump___ if statement 
   
   
