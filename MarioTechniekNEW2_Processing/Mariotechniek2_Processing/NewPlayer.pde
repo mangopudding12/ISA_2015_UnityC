@@ -136,7 +136,6 @@ class Player
          jumpacceleration.mult(0);
   }
   
-  
   void PossibleJump()
   {  
          // ground = wall collosion 
@@ -177,7 +176,6 @@ class Player
          
          
   } // EndPossibleJump___ if statement 
-  
   
   
     
