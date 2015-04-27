@@ -1,9 +1,4 @@
 
-// Er zijn nog problemen dat de spring functie..
-// - Hoe springt soms extreem hoog 
-// - Hij springt onregelmatig 
-// - Als je springt en je druk op links en rechts gebreuren er rare dingen. 
-// - Meer testen er zitten waarschijnlijk nog meer fouten in. 
 
 // ----------- Belangrijke informatie ----------------- 
 // Spring hoogte is ongeveer 268,9002
@@ -30,11 +25,10 @@ class Player
     float jumpVelocitymax; 
     PVector jumpacceleration; // versnelling voor jumping
     PVector jumpVelocity;
-    boolean Trying; 
-    int pop; 
-  
     
-    
+    // Hit by player 
+    boolean dead = false; 
+   
   // Contructor 
   Player(float Locationx_, float Locationy_,float breedte_,float hoogte_)
   {
@@ -82,7 +76,14 @@ class Player
    }
 
   
-
+  void Hit () 
+  {
+      if (dead == true)
+      {
+          //println("hit by enemy uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+          dead = false; 
+      }
+  }
 
 
 
@@ -170,13 +171,8 @@ class Player
          }  else {
             println("key = false");
             println(MainPlayer.ground2);
-         }
-         
-       
-         
-         
-  } // EndPossibleJump___ if statement 
-  
+         } 
+  } // EndPossibleJump
   
     
 } // end of the class 
