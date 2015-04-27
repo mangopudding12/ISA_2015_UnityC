@@ -30,12 +30,11 @@ class Enemy
            // Collision detection between objects and player. 
            // Deze collision detects de bovenkant wall. 
            if (MainPlayer.Location.x < xEnemy + (bEnemy - (MainPlayer.topSpeed))  &&  MainPlayer.Location.x + MainPlayer.breedte > (xEnemy + (MainPlayer.topSpeed+1)) && MainPlayer.Location.y + MainPlayer.hoogte > yEnemy - MainPlayer.jumpVelocity.y )
-           { 
-                     
-                       
+           {  
                        MainPlayer.Location.y = (yEnemy -MainPlayer.jumpVelocity.y) - MainPlayer.hoogte;
                        println("Bovenop");
                        MainPlayer.ground = true;
+                       MainPlayer.dead = true; 
            } 
            
                // Linkerkant wall 
@@ -43,7 +42,8 @@ class Enemy
                {
                     MainPlayer.Location.x = xEnemy - MainPlayer.breedte; 
                     println("Linkerkant");
-                    MainPlayer.ground = false;               
+                    MainPlayer.ground = false; 
+                    MainPlayer.dead = true;              
                }
                
                // Rechterkant wall
@@ -52,6 +52,7 @@ class Enemy
                     MainPlayer.Location.x = xEnemy + bEnemy;
                     println("Rechterkant");
                     MainPlayer.ground = false;
+                    MainPlayer.dead = true; 
                }            
     }
        

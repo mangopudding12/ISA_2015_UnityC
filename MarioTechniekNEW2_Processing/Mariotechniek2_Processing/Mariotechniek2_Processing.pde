@@ -65,6 +65,10 @@ void draw()
            { 
                 MainPlayer.Location.y = (grond.yground-MainPlayer.jumpVelocity.y) - MainPlayer.hoogte;
                 MainPlayer.ground2 = true;
+                 
+                MainPlayer.kleur1 = 100;
+                MainPlayer.kleur2 = 200;
+                MainPlayer.kleur3 = 50;
                 //println("grondbovenop");
                 //println( MainPlayer.ground2);
            }
@@ -72,7 +76,7 @@ void draw()
            // Collision detection between objects and player. 
            // Deze collision detects de bovenkant wall. 
            // MainPlayer.Location.y < enemy.hEnemy + MainPlayer.hoogte = When the player is standing on the enemy he don't go on the top of the wall !! 
-           if (MainPlayer.Location.x < Objects[p].xmuur + (Objects[p].breedte - (MainPlayer.topSpeed))  &&  MainPlayer.Location.x + MainPlayer.breedte > (Objects[p].xmuur + (MainPlayer.topSpeed+1)) && MainPlayer.Location.y + MainPlayer.hoogte > Objects[p].ymuur - MainPlayer.jumpVelocity.y && MainPlayer.Location.y < enemy.hEnemy + MainPlayer.hoogte)
+           if (MainPlayer.Location.x < Objects[p].xmuur + (Objects[p].breedte - (MainPlayer.topSpeed))  &&  MainPlayer.Location.x + MainPlayer.breedte > (Objects[p].xmuur + (MainPlayer.topSpeed+1)) && MainPlayer.Location.y + MainPlayer.hoogte > Objects[p].ymuur - MainPlayer.jumpVelocity.y)
            { 
                      
                        

@@ -6,6 +6,10 @@
 
 class Player
 { 
+    int kleur1;
+    int kleur2;
+    int kleur3;
+  
     PVector Location; // x en y locatie
     //PVector LocationEnemy; // x en y locatie 
      
@@ -52,7 +56,11 @@ class Player
         ground2 = false; 
         yInvisible_Line = Location.y+hoogte;
         jumpVelocitymax = 9;
-        topSpeed = 10; 
+        topSpeed = 10;
+       
+        kleur1 = 100;
+        kleur2 = 200;
+        kleur3 = 50;
   }
 
   // Deze functie telt alle krachten zoals wind of zwaartekracht bij elkaar op 
@@ -66,7 +74,7 @@ class Player
   
   void display()
   {
-      fill(100,200,50);
+      fill(kleur1,kleur2,kleur3);
       noStroke(); 
       
       // Belangrijk onthoud dat je geen vector kan gebruiken als argument binnen rect functie. 
@@ -80,7 +88,13 @@ class Player
   {
       if (dead == true)
       {
-          //println("hit by enemy uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+          kleur1 = 100; 
+          kleur2 = 0;
+          kleur3 = 150;
+        
+          println("hit by enemy uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+          MainPlayer.Location.y = 200; 
+          MainPlayer.Location.x = 200;
           dead = false; 
       }
   }
