@@ -3,7 +3,7 @@ using System.Collections.Generic; // Is liberia for IEnumerator.
 using UnityEngine;
 using System.Collections;
 
-public class PathCode : MonoBehaviour 
+public class PathDefinition : MonoBehaviour 
 {
 	public Transform[] Points; 
 

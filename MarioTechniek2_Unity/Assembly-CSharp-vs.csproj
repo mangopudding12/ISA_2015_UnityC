@@ -46,8 +46,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Code\Enemy_detection.cs" />
      <Compile Include="Assets\Code\FollowPath.cs" />
-     <Compile Include="Assets\Code\PathCode.cs" />
+     <Compile Include="Assets\Code\PathDefinition.cs" />
+     <Compile Include="Assets\Code\PlayerJumping.cs" />
+     <Compile Include="Assets\Code\PlayerMovement.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
  </Reference>

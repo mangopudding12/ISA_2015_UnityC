@@ -13,6 +13,8 @@ public class FollowPath : MonoBehaviour {
 
 	// FollowType.MoveTowards = een default setting. 
 	public FollowType Type = FollowType.MoveTowards;
+
+	// Is From the other class so if you change the name of that other class you have a problem.
 	public PathDefinition Path; 
 	public float Speed = 1; 
 	public float MaxDistanceToGoal =.1f; // The max afstand the object moet hebben voordat die naar volgende piont toe gaat. 
@@ -23,6 +25,11 @@ public class FollowPath : MonoBehaviour {
 
 	public void Start() 
 	{
+		if (Path == null) 
+		{
+			Debug.LogError("Path can't be null",gameObject);
+			return; 
+		}
 	}
 
 }
