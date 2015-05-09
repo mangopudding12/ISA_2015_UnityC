@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\MarioTechniek2_Unity\Assets\Code\PathCode.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\MarioTechniek2_Unity\Assets\Code\Enemy_Movement.cs">
     <Files>
-      <File FileName="..\MarioTechniek2_Unity\Assets\Code\PathCode.cs" Line="15" Column="2" />
+      <File FileName="..\MarioTechniek2_Unity\Assets\Code\Enemy_detection.cs" Line="1" Column="1" />
+      <File FileName="..\MarioTechniek2_Unity\Assets\Code\Enemy_Movement.cs" Line="26" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
