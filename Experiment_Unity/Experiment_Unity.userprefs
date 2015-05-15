@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\MarioTechniek2_Unity\Assets\Code\Enemy_Movement.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\PlayerTouchMe.cs">
     <Files>
       <File FileName="..\MarioTechniek2_Unity\Assets\Code\Enemy_detection.cs" Line="1" Column="1" />
-      <File FileName="..\MarioTechniek2_Unity\Assets\Code\Enemy_Movement.cs" Line="26" Column="3" />
+      <File FileName="..\MarioTechniek2_Unity\Assets\Code\Enemy_Movement.cs" Line="35" Column="1" />
+      <File FileName="Assets\scripts\PlayerTouchMe.cs" Line="26" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

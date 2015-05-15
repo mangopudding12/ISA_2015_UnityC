@@ -13,6 +13,7 @@ public class PlayerJumping : MonoBehaviour {
 	{
 		lineCasting (); 
 		Jumping ();
+
 	}
 
 	void lineCasting() 
@@ -44,4 +45,6 @@ public class PlayerJumping : MonoBehaviour {
 			rigidbody2D.AddForce(Vector2.up * JumpForce);
 		} 
 	}
+
+
 }

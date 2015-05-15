@@ -8,18 +8,26 @@ public class PlayerMovement : MonoBehaviour {
 	public Transform lineStart,lineEnd; 
 	RaycastHit2D whatIHit; 
 
+	RaycastHit2D KillingDino; 
+
 
 	// Update is called once per frame
 	void Update () 
 	{
 		Movement (); 
 		Reycast (); 
-		Hitting ();
+		Hitting (); 
+	
+
 	}
+
+
 
 	void Reycast() 
 	{
 		Debug.DrawLine (lineStart.position, lineEnd.position, Color.red);
+
+
 
 		if (Physics2D.Linecast (lineStart.position, lineEnd.position, 1 << LayerMask.NameToLayer ("Vijand"))) 
 		{
@@ -37,7 +45,10 @@ public class PlayerMovement : MonoBehaviour {
 		// Now the player layer Igonere the Collision with de enemy layer. 
 		// The numbers are de numers of the layer. 
 		// 8 is the player and 9 are all the enemy's. 
-		Physics2D.IgnoreLayerCollision (8, 9);
+		//Physics2D.IgnoreLayerCollision (8, 9);
+
+
+
 	}
 
 	void Hitting() 
@@ -75,4 +86,9 @@ public class PlayerMovement : MonoBehaviour {
 			transform.Translate(-Vector2.right * speedPlayer * Time.deltaTime); 
 		}
 	} 
+
+
+
+
+
 }

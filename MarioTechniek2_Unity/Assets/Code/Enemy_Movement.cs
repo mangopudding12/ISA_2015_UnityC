@@ -3,7 +3,7 @@ using System.Collections;
 
 	public class Enemy_Movement : MonoBehaviour {
 	public float snelheid; 
-	public Transform Cstart,Cend; 
+	public Transform Csta,Cend; 
 	public bool TouchSometing; 
 
 	// Deze manier van LineCasting is iets minder mooi. 
@@ -16,14 +16,14 @@ using System.Collections;
 	void Update () {
 
 		LineCast (); 
-		Moving (); 
 
 	}
 
-	void Moving () 
+	// Dit is ook een manier om onzichtbare lijnen zichtbaar te maken. 
+	void OnDrawGizmos() 
 	{
-		// Give the movement to the right 
-
+		//Gizmos.color = Color.cyan; 
+		//Gizmos.DrawLine (Csta.position, Cend.position); 
 	}
 
 	void LineCast() 
@@ -31,8 +31,8 @@ using System.Collections;
 		rigidbody2D.velocity = new Vector2 (snelheid,rigidbody2D.velocity.y);
 
 		// LineCasting kijken of je tegen muur bots. 
-		TouchSometing = Physics2D.Linecast(Cstart.position,Cend.position);
-		print (TouchSometing); 
+		TouchSometing = Physics2D.Linecast(Csta.position,Cend.position);
+
 
 		if (TouchSometing == true) 
 		{
@@ -41,11 +41,6 @@ using System.Collections;
 		}
 	}
 
-	// Dit is ook een manier om onzichtbare lijnen zichtbaar te maken. 
-	void OnDrawGizmos() 
-	{
-		Gizmos.color = Color.cyan; 
-		Gizmos.DrawLine (Cstart.position, Cend.position); 
-	}
+
 
 }
