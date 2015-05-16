@@ -57,12 +57,14 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			//Destroy gameobject whatIHit, it is not in the world anymore. 
 			Destroy (whatIHit.collider.gameObject); 
+			print ("Hoera je Destroy enemy"); 
 		}
 
 		if (Input.GetKeyDown (KeyCode.F) && interact == true) 
 		{
 			// Set the checkbox out, so you don't see it anymore. 
 			whatIHit.collider.gameObject.SetActive(false);
+			print ("Hoera je oncheck enemy check box");
 		}
 	}
 
@@ -87,7 +89,15 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	} 
 
-
+	// Andere manier om player te doden.. 
+	//void OnCollisionEnter2D (Collision2D col)
+	//{
+	//	if (col.gameObject.tag == "deadly") 
+	//	{
+	//		print ("Dead");
+	//		Application.LoadLevel(0);
+	//	}
+	//}
 
 
 

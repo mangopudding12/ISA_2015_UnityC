@@ -30,7 +30,7 @@ public class PlayerJumping : MonoBehaviour {
 		if (transform.position.y >= 70) {
 			print ("Wacht rustig tot player weer in scherm is Sorry");
 		} else {
-			print (""); 
+			//print (""); 
 		}
 
 		if (Input.GetKey (KeyCode.K) && ground == true) 
