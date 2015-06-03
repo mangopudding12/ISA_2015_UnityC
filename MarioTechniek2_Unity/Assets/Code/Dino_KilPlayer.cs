@@ -12,7 +12,7 @@ public class Dino_KilPlayer : MonoBehaviour {
 	public Transform lineBoven,lineOnder;  
 	public Transform lineRechts2,lineLinks2; 
 	public Transform lineBoven2,lineOnder2;  
-
+	
 
 	void Update () 
 	{
@@ -39,7 +39,7 @@ public class Dino_KilPlayer : MonoBehaviour {
 		{
 			print ("Dead");
 			Debug.Log ("Dead");
-			Application.LoadLevel(0);
+			Application.LoadLevel(1);
 		}
 	}
 }
