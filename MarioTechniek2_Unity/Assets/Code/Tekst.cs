@@ -6,6 +6,8 @@ public class Tekst : MonoBehaviour {
 	// Op deze manier krijg je assis naar de andere klas 
 	// Je krijgt accis to Dino_Example clas 
 	public Dino_Example DinoScript; 
+	public string text;
+	public GameObject TekstBlok; 
 
 	// Use this for initialization
 	void Start () {
@@ -15,11 +17,34 @@ public class Tekst : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
+	}
+
+	void OnMouseOver() 
+	{
+
+	}
+
+	// Dit is nodig voor als je GUI dingen wilt gebruiken. 
+	void OnGUI () 
+	{
 		// Vergeet niet DinoScript ervoor te zetten. 
-		if (DinoScript.zien == true) {
+		if (DinoScript.zien == true) 
+		{
 			print ("aaa Dino"); 
+
+       		// Stardaard texts 
+			GUI.Box (new Rect (200,20,220,30),text);
+
+			// Klik button standaard 
+			if (GUI.Button(new Rect(10, 70, 55, 30), "Restart")){}
+
+			TekstBlok.SetActive (true);
+
+
 		} else { 
 			print ("Veilig"); 
+			TekstBlok.SetActive (false);
 		}
 	}
 }
