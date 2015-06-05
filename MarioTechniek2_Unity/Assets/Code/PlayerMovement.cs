@@ -8,17 +8,20 @@ public class PlayerMovement : MonoBehaviour {
 	public Transform lineStart,lineEnd; 
 	RaycastHit2D whatIHit; 
 
+	public Dino_Example DinoScript;
+
 	RaycastHit2D KillingDino; 
 
 
 	// Update is called once per frame
 	void Update () 
 	{
-		Movement (); 
-		Reycast (); 
-		Hitting (); 
-	
-
+		if (DinoScript.zien == false) 
+		{
+			Movement (); 
+			Reycast (); 
+			Hitting (); 
+		}
 	}
 
 
@@ -90,14 +93,13 @@ public class PlayerMovement : MonoBehaviour {
 	} 
 
 	// Andere manier om player te doden.. 
-	//void OnCollisionEnter2D (Collision2D col)
-	//{
-	//	if (col.gameObject.tag == "deadly") 
-	//	{
-	//		print ("Dead");
-	//		Application.LoadLevel(0);
-	//	}
-	//}
+	void OnCollisionEnter2D (Collision2D col)
+	{
+		if (col.gameObject.tag == "deadly") {
+			print ("Dead");
+			Application.LoadLevel (0);
+		}
+	}
 
 
 

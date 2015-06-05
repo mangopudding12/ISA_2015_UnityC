@@ -8,6 +8,7 @@ public class Tekst : MonoBehaviour {
 	public Dino_Example DinoScript; 
 	public string text;
 	public GameObject TekstBlok; 
+	public GameObject Nieuwlevel; 
 
 	// Use this for initialization
 	void Start () {
@@ -31,20 +32,21 @@ public class Tekst : MonoBehaviour {
 		// Vergeet niet DinoScript ervoor te zetten. 
 		if (DinoScript.zien == true) 
 		{
-			print ("aaa Dino"); 
+			//print ("aaa Dino"); 
 
        		// Stardaard texts 
 			GUI.Box (new Rect (200,20,220,30),text);
 
 			// Klik button standaard 
-			if (GUI.Button(new Rect(10, 70, 55, 30), "Restart")){}
+			if (GUI.Button(new Rect(10, 70, 70, 20), "New Level")){}
 
 			TekstBlok.SetActive (true);
-
+			Nieuwlevel.SetActive (true); 
 
 		} else { 
-			print ("Veilig"); 
+			//print ("Veilig"); 
 			TekstBlok.SetActive (false);
+			Nieuwlevel.SetActive (false); 
 		}
 	}
 }

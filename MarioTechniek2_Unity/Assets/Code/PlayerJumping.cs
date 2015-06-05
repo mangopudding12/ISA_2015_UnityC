@@ -8,11 +8,16 @@ public class PlayerJumping : MonoBehaviour {
 	public Transform groundEnd; 
 	public float JumpForce; 
 
+	public Dino_Example DinoScript;
+
 	// Update is called once per frame
 	void Update () 
 	{
-		lineCasting (); 
-		Jumping ();
+		if (DinoScript.zien == false) 
+		{
+			lineCasting (); 
+			Jumping ();
+		}
 
 	}
 
